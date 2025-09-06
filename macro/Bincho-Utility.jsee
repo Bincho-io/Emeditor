@@ -1,0 +1,33 @@
+﻿/////////////////////////////////////////
+//                                       //
+//  Bincho Utility             //
+//                                      //
+/////////////////////////////////////////
+
+/*----------- Main Menu start -----------*/
+menu = CreatePopupMenu();
+submenuH = CreatePopupMenu();
+submenuP = CreatePopupMenu();
+submenuList = CreatePopupMenu();
+submenuTable = CreatePopupMenu();
+submenuText = CreatePopupMenu();
+submenuStructure = CreatePopupMenu();
+submenuLink = CreatePopupMenu();
+submenuCore = CreatePopupMenu();
+submenuForm = CreatePopupMenu();
+submenuType = CreatePopupMenu();
+submenuMedia = CreatePopupMenu();
+
+menu.AddPopup( "&Core", submenuCore);
+	submenuCore.Add( "<&!DOCTYPE>", 2);
+	submenuCore.Add( "<&html>", 3);
+	submenuCore.Add( "<hea&d>", 8);
+	submenuCore.Add( "<&title>", 4);
+	submenuCore.Add( "<&body>", 5);
+	submenuCore.Add( "<st&yle>", 6);
+	submenuCore.Add( "<sc&ript>", 7);
+
+menu.AddPopup( "&Structure", submenuStructure);
+	submenuStructure.Add( "<&div>", 40);
+	submenuStructure.Add( "<&span>", 45);
+	submenuStructure.Add( "<&hr>", 88);

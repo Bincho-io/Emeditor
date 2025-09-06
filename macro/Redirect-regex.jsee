@@ -1,0 +1,5 @@
+document.selection.Replace("http","^https?",eeFindNext | eeFindSaveHistory | eeFindReplaceSelOnly | eeReplaceAll | eeFindReplaceRegExp,0);
+document.selection.Replace("com\/\.\.\\/","com\/(us|jp|fr|es|de|cn)\/",eeFindNext | eeFindSaveHistory | eeFindReplaceSelOnly | eeReplaceAll | eeFindReplaceRegExp,0);
+document.selection.Replace("\\/","\\\\/",eeFindNext | eeFindSaveHistory | eeFindReplaceSelOnly | eeReplaceAll | eeFindReplaceRegExp,0);
+document.selection.Replace("\\.","\\\\.",eeFindNext | eeFindSaveHistory | eeFindReplaceSelOnly | eeReplaceAll | eeFindReplaceRegExp,0);
+document.selection.Replace("$","$",eeFindNext | eeFindSaveHistory | eeFindReplaceSelOnly | eeReplaceAll | eeFindReplaceRegExp,0);

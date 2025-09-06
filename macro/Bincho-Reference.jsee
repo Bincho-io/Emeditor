@@ -1,0 +1,33 @@
+﻿/*----------- Main Menu start -----------*/
+menu = CreatePopupMenu();
+menu.Add( "Media", 10);
+menu.Add( "Document Reader", 20);
+menu.Add( "Video Library", 30);
+menu.Add( "Library (AR)", 40);
+menu.Add( "Library (TR)", 50);
+menu.Add( "Keyboard Map", 60);
+/*----------- Main Menu end -----------*/
+	
+result = menu.Track( 0 );
+if( result != 0 ) {
+	switch(result){
+		case 10:
+		document.write("http://www.netapp.com/us/media/");
+		break;
+		case 20:
+		document.write("http://www.netapp.com/us/system/pdf-reader.aspx?m=");
+		break;
+		case 30:
+		document.write("http://www.netapp.com/us/library/videos.aspx?videoId=");
+		break;
+		case 40:
+		document.write("http://www.netapp.com/us/library/?docType=ar");
+		break;
+		case 50:
+		document.write("http://www.netapp.com/us/library/?docType=tr");
+		break;	
+		case 60:
+		document.write("Alt + Home = 論理行の行頭へ\nAlt + End = 論理行の行末へ\nCtrl + i = 箱型選択の開始/終了");
+		break;			
+			}
+}

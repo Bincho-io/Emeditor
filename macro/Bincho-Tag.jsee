@@ -1,0 +1,390 @@
+﻿/////////////////////////////////////////
+//                                                                //
+//  Bincho Tag Helper                                    //
+//                                                                //
+/////////////////////////////////////////
+
+/*----------- Main Menu start -----------*/
+menu = CreatePopupMenu();
+submenuH = CreatePopupMenu();
+submenuP = CreatePopupMenu();
+submenuList = CreatePopupMenu();
+submenuTable = CreatePopupMenu();
+submenuText = CreatePopupMenu();
+submenuStructure = CreatePopupMenu();
+submenuLink = CreatePopupMenu();
+submenuCore = CreatePopupMenu();
+submenuForm = CreatePopupMenu();
+submenuType = CreatePopupMenu();
+submenuMedia = CreatePopupMenu();
+
+menu.AddPopup( "&Core", submenuCore);
+	submenuCore.Add( "<&!DOCTYPE>", 2);
+	submenuCore.Add( "<&html>", 3);
+	submenuCore.Add( "<hea&d>", 8);
+	submenuCore.Add( "<meta charset=&utf-8>", 9);
+	submenuCore.Add( "<&title>", 4);
+	submenuCore.Add( "<&body>", 5);
+	submenuCore.Add( "<st&yle>", 6);
+	submenuCore.Add( "<sc&ript>", 7);
+
+menu.AddPopup( "&Structure", submenuStructure);
+	submenuStructure.Add( "<&div>", 40);
+	submenuStructure.Add( "<&span>", 45);
+	submenuStructure.Add( "<&hr>", 88);
+	
+menu.AddPopup( "Te&xt", submenuText);
+	submenuText.Add( "<&br />", 20);
+	submenuText.AddPopup( "&Paragraph", submenuP);
+		submenuP.Add( "<&p>", 161);
+		submenuP.Add( "<p fontLarge>", 162);
+		submenuP.Add( "<p 11px>", 163);
+		submenuP.Add( "<p tot-subhead>", 164);	
+		submenuP.Add( "<p executiveSummary>", 165);	
+		submenuP.Add( "<p &finePrint>", 166);	
+	submenuText.Add( "<&strong>", 190);
+	submenuText.Add( "<&em>", 50);
+	submenuText.Add( "<s&up>", 191);
+	submenuText.AddPopup( "&H1-6", submenuH);
+		submenuH.Add( "<h&1>", 81);
+		submenuH.Add( "<h&2>", 82);
+		submenuH.Add( "<h&3>", 83);
+		submenuH.Add( "<h&4>", 84);
+		submenuH.Add( "<h&5>", 85);
+		submenuH.Add( "<h&6>", 86);
+		
+menu.AddPopup( "Lin&k", submenuLink);
+	submenuLink.Add( "<&a>", 10);
+	
+menu.AddPopup( "&Media", submenuMedia);
+	submenuMedia.Add( "<&img>", 500);
+
+menu.AddPopup( "&Table", submenuTable);
+	submenuTable.Add( "<&table>", 200);
+	submenuTable.Add( "<t&body>", 201);
+	submenuTable.Add( "<t&h>", 204);
+	submenuTable.Add( "<t&r>", 202);
+	submenuTable.Add( "<t&d>", 203);
+	
+menu.AddPopup( "&List", submenuList);
+	submenuList.Add( "<&ul>", 211);
+	//submenuList.Add( "<ul contentUL>", 212);
+	submenuList.Add( "<ul linkList>", 213);
+	submenuList.Add( "<&li>", 120);
+	submenuList.Add( "<li &margin-bottom:0.8rem", 121);
+	
+menu.AddPopup( "&Form", submenuForm);
+	submenuForm.Add( "<&form>", 300);
+	submenuForm.AddPopup( "<&input>", submenuType);	
+		submenuType.Add( "&text", 301);
+		//submenuType.Add( "password", 302);
+		//submenuType.Add( "file", 303);
+		submenuType.Add( "&checkbox", 304);
+		submenuType.Add( "&radio", 305);
+		submenuType.Add( "&hidden", 306);
+		submenuType.Add( "&submit", 307);
+		//submenuType.Add( "reset", 308);
+		submenuType.Add( "&button", 309);
+		//submenuType.Add( "image", 310);
+	submenuForm.Add( "<text&area>", 311);
+	submenuForm.Add( "<field&set>", 312);
+	submenuForm.Add( "<&label>", 313);
+	
+menu.Add( "", 0, eeMenuSeparator );
+menu.Add( "Tag &Removal", 1000);
+menu.Add( "<!-- -->", 1);
+/*----------- Main Menu end -----------*/
+
+result = menu.Track( 0 );
+if( result != 0 ) {
+
+switch(result){
+	case 1:
+		str = document.selection.Text;
+		document.write("<!-- "+str+" -->");
+          break;
+
+	case 10:
+		txtHref = prompt( "リンクを入力", "");
+		if(!(txtHref)) Quit();
+          targetmenu = CreatePopupMenu();
+          targetmenu.Add( "&none", 1);
+          targetmenu.Add( "&blank", 2);
+          targetmenu.Add( "&top", 3);
+          targetmenu.Add( "&self", 4);
+          targetmenu.Add( "&mail", 5);
+          
+          targetresult = targetmenu.Track( 0 );
+          if( targetresult != 0 ){
+               switch(targetresult){
+                    case 1:target="";
+                    break;
+                    case 2:target=" target=\"_blank\"";
+                    break;
+                    case 3:target=" target=\"_top\"";
+                    break;
+                    case 4:target=" target=\"_self\"";
+                    break;
+                    case 5:txtHref="mailto:"+txtHref;target="";
+                    break;                    
+                    }
+               }
+               else{target="";}
+                              str = document.selection.Text;
+               document.write("<a href=\""+txtHref+"\""+target+">"+str+"</a>");
+          break;
+          
+          case 2:
+               document.write("<!DOCTYPE html>");
+          break;
+          
+          case 3:
+               str = document.selection.Text;
+               document.write("<html>"+"\n"+str+"\n"+"</html>");
+          break;
+          
+          case 4:
+               str = document.selection.Text;
+               document.write("<title>"+str+"</title>");
+          break;
+          
+          case 5:
+               str = document.selection.Text;
+               document.write("<body>"+"\n"+str+"\n"+"</body>");
+          break;
+          
+          case 6:
+               str = document.selection.Text;
+               document.write("<style>"+"\n"+str+"\n"+"</style>");
+          break;
+          
+          case 7:
+               str = document.selection.Text;
+               document.write("<script>"+"\n"+str+"\n"+"</script>");
+          break;
+          
+          case 8:
+               str = document.selection.Text;
+               document.write("<head>"+"\n"+str+"\n"+"</head>");
+          break;
+          
+          case 9:
+               str = document.selection.Text;
+               document.write("<meta charset=\"utf-8\">");
+          break;
+                    
+          case 20:
+               document.write("<br />");
+          break;
+          
+          case 40:
+               str = document.selection.Text;
+               document.write("<div>"+str+"</div>");
+          break;
+          
+          case 45:
+               str = document.selection.Text;
+               document.write("<span>"+str+"</span>");
+          break;          
+          
+          case 50:
+               str = document.selection.Text;
+               document.write("<em>"+str+"</em>");
+          break;
+          
+          case 81:
+               str = document.selection.Text;
+               document.write("<h1>"+str+"</h1>");
+          break;          
+          
+          case 82:
+               str = document.selection.Text;
+               document.write("<h2>"+str+"</h2>");
+          break;
+          
+          case 83:
+               str = document.selection.Text;
+               document.write("<h3>"+str+"</h3>");
+          break;
+          
+	    case 84:
+               str = document.selection.Text;
+               document.write("<h4>"+str+"</h4>");
+          break;
+          
+          case 85:
+               str = document.selection.Text;
+               document.write("<h5>"+str+"</h5>");
+          break;
+          
+          case 86:
+               str = document.selection.Text;
+               document.write("<h6>"+str+"</h6>");
+          break;
+          
+          case 88:
+               document.write("<hr />");
+          break;
+          
+          case 120:
+               str = document.selection.Text;
+               document.write("<li>"+str+"</li>");
+          break;
+          
+		case 121:
+               str = document.selection.Text;
+               document.write("<li style=\"margin-bottom:0.8rem;\">"+str+"</li>");
+          break;
+          
+          case 161:
+               str = document.selection.Text;
+               document.write("<p>"+str+"</p>"+"\n");
+          break;
+          
+          case 162:
+               str = document.selection.Text;
+               document.write("<p class=\"fontLarge\">"+str+"</p>");
+          break;
+
+          case 163:
+               str = document.selection.Text;
+               document.write("<p style=\"font-size:11px;\">"+str+"</p>");
+          break;
+          
+          case 164:
+               str = document.selection.Text;
+               document.write("<p class=\"tot-subhead\">"+str+"</p>");
+          break;                    
+
+          case 165:
+               str = document.selection.Text;
+               document.write("<p class=\"executiveSummary\">"+str+"</p>");
+          break;     
+          
+          case 166:
+               str = document.selection.Text;
+               document.write("<p class=\"finePrint\">"+str+"</p>");
+          break; 
+          
+          case 190:
+               str = document.selection.Text;
+               document.write("<strong>"+str+"</strong>");
+          break;
+          
+          case 191:
+               str = document.selection.Text;
+               document.write("<sup>"+str+"</sup>");
+          break;
+
+          case 200:
+               str = document.selection.Text;
+               document.write("<table>"+str+"</table>");
+          break;
+          
+          case 201:
+               str = document.selection.Text;
+               document.write("<tbody>"+str+"</tbody>");
+          break;
+          
+          case 202:
+               str = document.selection.Text;
+               document.write("<tr>"+str+"</tr>");
+          break;
+
+          case 203:
+               str = document.selection.Text;
+               document.write("<td>"+str+"</td>");
+          break;
+          
+          case 204:
+               str = document.selection.Text;
+               document.write("<th>"+str+"</th>");
+          break;                    
+                              
+          case 211:
+               str = document.selection.Text;
+               document.write("<ul>"+str+"</ul>");
+          break;
+          
+          case 212:
+               str = document.selection.Text;
+               document.write("<ul class=\"contentUL\">"+str+"</ul>");
+          break;          
+          
+          case 213:
+               str = document.selection.Text;
+               document.write("<ul class=\"linkList\">"+str+"</ul>");
+          break;
+          
+          case 300:
+               str = document.selection.Text;
+               document.write("<form>"+str+"</form>");
+          break;
+          
+          case 301:
+               document.write("<input tyle=\"text\" name=\"\" value=\"\">");
+          break;
+          
+          case 302:
+               document.write("<input tyle=\"password\" name=\"\">");
+          break;
+          
+          case 303:
+               document.write("<input tyle=\"file\" name=\"\">");
+          break;
+          
+          case 304:
+               document.write("<input tyle=\"checkbox\" name=\"\" value=\"\">");
+          break;
+          
+          case 305:
+               document.write("<input tyle=\"radio\" name=\"\" value=\"\">");
+          break;
+          
+          case 306:
+               document.write("<input tyle=\"hidden\" name=\"\" value=\"\">");
+          break;
+          
+          case 307:
+               document.write("<input tyle=\"submit\" name=\"\" value=\"\">");
+          break;
+          
+          case 308:
+               document.write("<input tyle=\"reset\" name=\"\" value=\"\">");
+          break;
+          
+          case 309:
+               document.write("<input tyle=\"button\" name=\"\" value=\"\">");
+          break;
+          
+          case 310:
+               document.write("<input tyle=\"image\" name=\"\" value=\"\">");
+          break;
+          
+          case 311:
+               str = document.selection.Text;
+               document.write("<textarea>"+str+"</textarea>");
+          break;
+          
+          case 312:
+               str = document.selection.Text;
+               document.write("<fieldset>"+str+"</fieldset>");
+          break;
+          
+          case 313:
+               str = document.selection.Text;
+               document.write("<label>"+str+"</label>");
+          break;
+          
+	case 500:
+		txtsrc = prompt( "src=", "");
+               document.write("<img src=\""+txtsrc+"\""+" alt=\"\""+" width=\"\""+" height=\"\""+" />");
+          break;
+          
+          case 1000:
+		document.selection.Replace("<.+?>","",eeFindNext | eeReplaceSelOnly | eeReplaceAll | eeFindReplaceRegExp);
+		document.HighlightFind=false;
+          break;                            
+          
+          }
+} 
