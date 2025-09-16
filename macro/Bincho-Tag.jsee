@@ -1,7 +1,7 @@
 ﻿/////////////////////////////////////////
-//                                                                //
-//  Bincho Tag Helper                                    //
-//                                                                //
+//                                     //
+//        Bincho Tag Helper            //
+//                                     //
 /////////////////////////////////////////
 
 /*----------- Main Menu start -----------*/
@@ -35,13 +35,14 @@ menu.AddPopup( "&Structure", submenuStructure);
 	
 menu.AddPopup( "Te&xt", submenuText);
 	submenuText.Add( "<&br />", 20);
-	submenuText.AddPopup( "&Paragraph", submenuP);
-		submenuP.Add( "<&p>", 161);
-		submenuP.Add( "<p fontLarge>", 162);
-		submenuP.Add( "<p 11px>", 163);
-		submenuP.Add( "<p tot-subhead>", 164);	
-		submenuP.Add( "<p executiveSummary>", 165);	
-		submenuP.Add( "<p &finePrint>", 166);	
+	submenuText.Add( "<&p>", 161);
+	// submenuText.AddPopup( "&Paragraph", submenuP);
+	//	submenuP.Add( "<&p>", 161);
+	//	submenuP.Add( "<p fontLarge>", 162);
+	//	submenuP.Add( "<p 11px>", 163);
+	//	submenuP.Add( "<p tot-subhead>", 164);	
+	//	submenuP.Add( "<p executiveSummary>", 165);	
+	//	submenuP.Add( "<p &finePrint>", 166);	
 	submenuText.Add( "<&strong>", 190);
 	submenuText.Add( "<&em>", 50);
 	submenuText.Add( "<s&up>", 191);
@@ -387,4 +388,4 @@ switch(result){
           break;                            
           
           }
-} 
+}
