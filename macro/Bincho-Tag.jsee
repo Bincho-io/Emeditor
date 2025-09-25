@@ -239,7 +239,7 @@ switch(result){
           
           case 161:
                str = document.selection.Text;
-               document.write("<p>"+str+"</p>"+"\n");
+               document.write("<p>"+str+"</p>");
           break;
           
           case 162:
